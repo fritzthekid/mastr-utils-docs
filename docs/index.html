@@ -20,15 +20,22 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
 </head>
 <body>
-  <div class="topbanner" style="margin-bottom: 20px;"> 
-    <hr>
-    <p style="margin-bottom: 2cm; margin-top:1cm">
-      <h1 style="color:white; text-align:center;">Mastr-Utils - Docs</h1>
-    </p>
-    <br>
-    <p> </p>
-  </div>
-  <div class="inner-body">
+  <header> 
+      <h2>Mastr-Utils - Docs</h2>
+  </header>
+  <section>
+    <nav>
+<li><a href="#sec-goal">"sec-goal"</a></li>
+<li><a href="#sec-enginesearch">"sec-enginesearch"</a></li>
+<li><a href="#sec-marktstammdatenregister">"sec-marktstammdatenregister"</a></li>
+<li><a href="#sec-mastrtogpx">"sec-mastrtogpx"</a></li>
+<li><a href="#sec-simple-search">"sec-simple-search"</a></li>
+<li><a href="#sec-area-search">"sec-area-search"</a></li>
+<li><a href="#sec-mastrtoplot">"sec-mastrtoplot"</a></li>
+    </ul>
+  </nav>
+  
+  <article>
   <h1>Dokumentation</h1>
   <p><strong>Das wichtigste</strong>: Diese Tools und die Webanwendung werden angeboten wie in der LICENCE angegeben. Es gibt keine Gewähr, keinen Support oder ähnliches.</p>
   <p>Dieses Repository enthält Tools zur Auswertung der Daten des Marktstammdatenregisters (MaStR). Derzeit sind folgende Anwendungen verfügbar:</p>
@@ -37,10 +44,10 @@
     <li><strong>mastrtoplot</strong>: Ein Kommandozeilen-Tool zur Erstellung von Plots aus MaStR-Dateien in als Vektorgraphik (SVG-Format).</li>
     <li><strong>Webanwendung</strong>: Eine Anwendung zur der obigen Tools also Lokalisierung von Anlagen und Anlagen-Parks, wobei benachbarte Anlagen zusammengefasst werden können, sowie das Erstellen von Plots.</li>
   </ol>
-  <h2>Ziel der Anwendung mastrtogpx</h2>
+  <h2 id="sec-goal">Ziel der Anwendung mastrtogpx</h2>
   <p>Mit der Anwendung sollten in erster Linie große Windparks oder Solaranlagen gefunden werden. Für diese Anlagen gilt in der Regel, dass diese Stromerzeugungseinheiten in der Regel aus vielen Einheiten bestehen.</p>
-  <h2>Ablaufe der Anlagensuche</h2>
-  <h3>Abruf der Daten</h3>
+  <h2 id="sec-enginesearch">Ablaufe der Anlagensuche</h2>
+  <h3 id="sec-marktstammdatenregister">Abruf der Daten</h3>
   <ol>
     <li>Aufruf des <a href="https://www.marktstammdatenregister.de/MaStR/Einheit/Einheiten/ErweiterteOeffentlicheEinheitenuebersicht"><strong>MarktStammdatenregisters</strong></a></li>
     <li><strong>Filterung der Daten</strong>: Erstellen Sie einen Filter, um die gewünschten Anlagen einzugrenzen. Achten Sie darauf, dass das Ergebnis <strong>25.000 Anlagen nicht übersteigt</strong>. Typische Filterkriterien:
@@ -56,7 +63,7 @@
   <ol start="3">
     <li><strong>Export der Daten</strong>: Exportieren Sie die gefilterte Tabelle, beispielsweise als <code>Downloads/Stromerzeuger.csv</code>.</li>
   </ol>
-  <h3>Nutzung des Tools mastrtogpx</h3>
+  <h3 id="sec-mastrtogpx">Nutzung des Tools mastrtogpx</h3>
   <ol>
     <li><strong>Zugriff auf die Anwendung</strong>: Öffne den Webbrowser und navigieren zur Webanwendung unter der Adresse
       <ul>
@@ -114,7 +121,7 @@
     </li>
     <li>Wechsel zu <a href="https://eduard.user.space/">Mastr to GPX Konverter</a></li>
   </ol>
-  <h3>Einfache Suche</h3>
+  <h3 id="sec-simple-search">Einfache Suche</h3>
   <ul>
     <li>Filename: wie eben vom Marktstammdatenregister geholt</li>
     <li>Querey: BruttoleistungDerEinheit &gt; 10000</li>
@@ -125,13 +132,13 @@
   <p>Drücke Convert</p>
   <p>Es sollten jetzt auf der rechten Seite sämtlichen c.a. 700 Einheiten dargestellt sein.</p>
   <img src="static/img/pv_10mw_deutschland.png" alt="PV > 10MW in Deutschland">
-  <h3>Flächige Suche nach Solarparks mit Gesamtleistung größer 150 MW</h3>
+  <h3 id="sec-area-search">Flächige Suche nach Solarparks mit Gesamtleistung größer 150 MW</h3>
   <p>Einzige Unterschied zur obigen Eingabe ist die Eingabe einer Min. Bruttoleistung.</p>
   <p>Dort kann dann 150000 [kW] stehen, erst jetzt wird der Radius relevant. Die Karte wird jetzt deutlich übersichtlicher:</p>
   <img src="static/img/pv_150mw_deutschland.png" alt="PV > 150MW in Deutschland">
   <p>Werte über 200kW reduzieren sich die Anlagen auf die deutschlandweit größte Anlage bei Leibzig.</p>
   <img src="static/img/pv_500mw_deutschland.png" alt="PV > 200MW in Deutschland">
-  <h2>Nutzung des Tools mastrtoplot</h2>
+  <h2 id="sec-mastrtoplot">Nutzung des Tools mastrtoplot</h2>
   <p><strong>Zugriff auf die Anwendung</strong>: Öffne den Webbrowser und navigiere zur Webanwendung unter der Adresse:</p>
   <ul>
     <li><a href="https://eduard.uber.space/mastrutils/">https://eduard.uber.space/mastrutils/</a></li>
@@ -238,6 +245,11 @@ usage: mastrtogpx [-h] [-q QUERY] [-o OUTPUT] [-c COLOR] [-m MIN_WEIGHT] [-r RAD
   <p>Dieses Projekt steht unter der <a href="LICENSE">BSD-Lizenz</a>.</p>
   <p>Für das Logo gilt die CC BY-SA 4.0 Lizenz<br>
   <a href="https://commons.wikimedia.org/wiki/File:Eyes-blitz.svg">https://commons.wikimedia.org/wiki/File:Eyes-blitz.svg</a></p>
-  </div>
+  </article>
+</section>
+
+<footer>
+  <p>Footer</p>
+</footer>
 </body>
 </html>
