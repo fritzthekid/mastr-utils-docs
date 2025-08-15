@@ -1,6 +1,33 @@
 body {
+  display: flex;
+  align-items: stretch;
+  font-family: Arial, sans-serif;
+  margin-left: 0%;
+  margin-right: 0%;     
+  background-color: #f4f4f4;
+}
+
+#root {
+  width: 100%;
+}
+
+.topbanner {
+  font-family: Arial, sans-serif;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 0%;
+  margin-right: 0%;     
+  padding-top: 20px;
+  padding-bottom: 3px;
+  border: none;
   background-color: #a0a0a0;
-  display: block;
-  margin-top: 20px;
-  margin-left: 40px;
+}
+
+.inner-body {
+  font-family: Arial, sans-serif;
+  margin-left: auto; /*5%;*/
+  margin-right: auto; /*5%;*/
+  margin-top: 10px;
+  width: 80%;
+  /*background-color: #d10a96;*/
 }
