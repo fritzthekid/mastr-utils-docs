@@ -76,9 +76,9 @@
     </li>
     <li><strong>Ergebnisanzeige</strong>: Die Anwendung visualisiert die Anlagen auf einer Karte und fasst benachbarte Anlagen gemäß den angegebenen Kriterien zusammen.</li>
   </ol>
-  <img src="img/popup_one_item.png" alt="popup">
+  <img src="static/img/popup_one_item.png" alt="popup">
   <p>Bei flächiger Suche werden die Anlagen zusammengefasst und die Eigenschaften einer dieser Anlagen ausgegeben (allerdings mit der Gesamtbruttoleistung aller Anlagen.)</p>
-  <img src="img/flaechige_suche.png" alt="flaechige Suche">
+  <img src="static/img/flaechige_suche.png" alt="flaechige Suche">
   <h3>Hinweise</h3>
   <ul>
     <li>Stellen Sie sicher, dass die exportierte CSV-Datei die erwartete Struktur und Datenfelder enthält, um eine korrekte Verarbeitung in der Webanwendung zu gewährleisten.</li>
@@ -114,13 +114,13 @@
   </ul>
   <p>Drücke Convert</p>
   <p>Es sollten jetzt auf der rechten Seite sämtlichen c.a. 700 Einheiten dargestellt sein.</p>
-  <img src="img/pv_10mw_deutschland.png" alt="PV > 10MW in Deutschland">
+  <img src="static/img/pv_10mw_deutschland.png" alt="PV > 10MW in Deutschland">
   <h3>Flächige Suche nach Solarparks mit Gesamtleistung größer 150 MW</h3>
   <p>Einzige Unterschied zur obigen Eingabe ist die Eingabe einer Min. Bruttoleistung.</p>
   <p>Dort kann dann 150000 [kW] stehen, erst jetzt wird der Radius relevant. Die Karte wird jetzt deutlich übersichtlicher:</p>
-  <img src="img/pv_150mw_deutschland.png" alt="PV > 150MW in Deutschland">
+  <img src="static/img/pv_150mw_deutschland.png" alt="PV > 150MW in Deutschland">
   <p>Werte über 200kW reduzieren sich die Anlagen auf die deutschlandweit größte Anlage bei Leibzig.</p>
-  <img src="img/pv_500mw_deutschland.png" alt="PV > 200MW in Deutschland">
+  <img src="static/img/pv_500mw_deutschland.png" alt="PV > 200MW in Deutschland">
   <h2>Nutzung des Tools mastrtoplot</h2>
   <p><strong>Zugriff auf die Anwendung</strong>: Öffne den Webbrowser und navigiere zur Webanwendung unter der Adresse:</p>
   <ul>
@@ -135,11 +135,11 @@
     <li>ge_1mw für BruttoleistungDerEinheit &gt;= 1000</li>
     <li>lt_100mw analog für BruttoleistungDerEinheit &lt; 100000</li>
   </ul>
-  <img src="img/plot_pv_leistungs_segmente.png" alt="pv Leistungsaufteilung nach Bundesland">
+  <img src="static/img/plot_pv_leistungs_segmente.png" alt="pv Leistungsaufteilung nach Bundesland">
   <h3>Beispiel 2</h3>
   <p>Beispiel 2 liefert die Anteile von Leistungen pro Energieträger (nur "Solare Strahlungsenergie", "Biomasse (nicht Biogas)", "Biogas", "Wind") pro Landkreis. Dieser Marktstammdatenregisterauszung:</p>
   <p>(kurze Anmerkung: is_pv steht für Energieträger="Solare Strahlungsenergie")</p>
-  <img src="img/plot_energietraeger_typen.png" alt="Akumulierte Leistung aufgeteilt in Energieträger">
+  <img src="static/img/plot_energietraeger_typen.png" alt="Akumulierte Leistung aufgeteilt in Energieträger">
   <p>Der Plot kann runtergeladen oder durch anklicken in eigenem Tab geöffnet werden.</p>
   <h3>Beispiel 3</h3>
   <p>Es soll die pv Leistung vor oder nach einem bestimmten Datum ermittelt werden, an dem die Einheit das erste Mal erwähnt wird. Dafür gibt es die Operatoren:</p>
@@ -148,7 +148,7 @@ before_DD.MM.YYYY und
 after_DD.MM.YYYY
   </pre>
   <p>Eine solche Abfrage könne dann aussehen:</p>
-  <img src="img/pv_vor_nach_2021.png" alt="PV vor und nach">
+  <img src="static/img/pv_vor_nach_2021.png" alt="PV vor und nach">
   <h2>Hinweis zu Querys</h2>
   <p>Die Online-Hilfen sind beschränkt auf einer Charakterisierung der Daten nach Leistung, Energieträger, Betriebsstatus, gibt es auch bereits online Hilfen zu auf den Seiten.</p>
   <p>Aus software technischen Gründen wird z.B. der Begriff <code>Bruttoleistung der Einheit</code> zu <code>BruttoleistungDerEinheit</code>. Es können alle Begriffe in dieser Art, die im csv Header stehen verwendet werden.</p>
@@ -206,14 +206,14 @@ usage: mastrtogpx [-h] [-q QUERY] [-o OUTPUT] [-c COLOR] [-m MIN_WEIGHT] [-r RAD
     <li><strong>Suche der Großspeicher in der Nähe</strong>:
       <pre>mastrtogpx '~/Downloads/Stromerzeuger(15).csv' -q 'is_battery & BruttoleistungDerEinheit > 10000 & (BetriebsStatus != "Endgültig stillgelegt")' -o tmp/speicher.gpx -c Red</pre>
       <p>Dieses Beispiel hilft, den Stromspeicher in Marbach genauer zu lokalisieren. Geeignet für die nächste Fahrradtour. Das Ergebnis wird unten mit Hilfe der Handy-App OSMAnd dargestellt.</p>
-      <img src="img/OsmAnd_Marbach_Speicher_100mW.jpg" alt="OSMAnd">
+      <img src="static/img/OsmAnd_Marbach_Speicher_100mW.jpg" alt="OSMAnd">
     </li>
     <li><strong>Suche großer Solarparks in Deutschland</strong>:
       <pre>mastrtogpx '~/Downloads/Stromerzeuger(17).csv' -q 'is_pv & BruttoleistungDerEinheit > 10000 & (BetriebsStatus != \"Endgültig stillgelegt\")' -m 90000 -r 1000 -o tmp/ge_90_1000.gpx -c Black</pre>
       <p>Das Zurechtfinden der wirklich großen Solarparks hilft die folgende Suche und das Ergebnis. (Siehe auch Online-Betrachter sowie Viking als PC-Tool)</p>
-      <img src="img/online2_10_90_1000_bei_Leibzig-SILUX-Solarpark.png" alt="">
-      <img src="img/online1-ge_90_1000.png" alt="">
-      <img src="img/Viking_10_90_1000_bei_Leibzig-SILUX-Solarpark.png" alt="">
+      <img src="static/img/online2_10_90_1000_bei_Leibzig-SILUX-Solarpark.png" alt="">
+      <img src="static/img/online1-ge_90_1000.png" alt="">
+      <img src="static/img/Viking_10_90_1000_bei_Leibzig-SILUX-Solarpark.png" alt="">
     </li>
   </ul>
   <h2>Tools zur Visualisierung von GPX-Dateien</h2>
