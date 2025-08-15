@@ -1,137 +1,309 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <title>Dokumentation – mastr-utils</title>
-    <link rel="stylesheet" href="static/css/styles.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        body { display: flex; min-height: 100vh; }
-        nav { width: 250px; background: #a0a0a0; padding: 2rem 1rem; font-size: 1.1rem; min-height: 100vh; }
-        nav ul { list-style: none; padding: 0; }
-        nav ul li { margin-bottom: 1.5rem; }
-        nav ul li a { color: #35424a; text-decoration: none; font-weight: bold; }
-        nav ul li a:hover { text-decoration: underline; color: #1cda4f; }
-        main { flex: 1; padding: 2rem; background: #f4f4f4; }
-        .inner-body { background: white; border-radius: 8px; box-shadow: 0 2px 16px #ccc; padding: 2rem; margin: 0 auto; width: 80%; }
-        .doc-warning { background: #fff3cd; border-left: 4px solid #ffc107; padding: 0.5rem 1rem; margin: 1rem 0; }
-        .doc-note { background: #e7f5e6; border-left: 4px solid #1cda4f; padding: 0.5rem 1rem; margin: 1rem 0; }
-        h1, h2, h3 { color: #35424a; }
-        img.example { max-width: 100%; display: block; margin: 1.5rem auto; border: 1px solid #eee; border-radius: 4px; box-shadow: 0 1px 8px #ddd; }
-        .example-caption { text-align: center; font-size: 0.95rem; color: #666; margin-bottom: 2rem; }
-        @media (max-width: 900px) {
-            nav { width: 100px; font-size: 0.9rem; }
-            .inner-body { width: 98%; padding: 1rem; }
-        }
-    </style>
-</head>
-<body>
-    <nav>
-        <ul>
-            <li><a href="#webapp">Webanwendung</a></li>
-            <li><a href="#gpx-examples">GPX Beispiele</a></li>
-            <li><a href="#plot-examples">Plot Beispiele</a></li>
-            <li><a href="#cli-tools">CLI-Tools</a></li>
-        </ul>
-    </nav>
-    <main>
-        <div class="inner-body">
-            <header>
-                <h1 id="webapp">mastr-utils Webanwendung</h1>
-            </header>
-            <div class="doc-warning">
-                <strong>Hinweis:</strong> Diese Tools und die Webanwendung werden angeboten wie in der LICENCE angegeben. Es gibt keine Gewähr, keinen Support oder ähnliches.
-            </div>
-            <p>
-                Die <strong>Webanwendung</strong> ist die bequemste Möglichkeit, die Funktionen von mastr-utils zu nutzen. 
-                Sie ist erreichbar unter: <a href="https://eduard.uber.space/mastrutils" target="_blank">https://eduard.uber.space/mastrutils</a>
-            </p>
-            <h2>Funktionen der Webanwendung</h2>
-            <ul>
-                <li><strong>Daten-Upload:</strong> Lade MaStR-Exportdateien (CSV) direkt hoch.</li>
-                <li><strong>Filter &amp; Cluster:</strong> Filtere und gruppiere Einheiten nach Bundesland, Anlagentyp, Leistung u.v.m.</li>
-                <li><strong>Kartenansicht:</strong> Visualisiere Anlagen und Parks direkt auf der Karte (Leaflet-basiert).</li>
-                <li><strong>Plot-Erstellung:</strong> Erzeuge anschauliche SVG-Plots aus den Daten.</li>
-                <li><strong>Export:</strong> Lade bearbeitete Daten als GPX oder SVG herunter.</li>
-            </ul>
-            <h2>So funktioniert die Seite</h2>
-            <ol>
-                <li>
-                    <strong>Datei hochladen:</strong> Exportiere eine CSV aus dem Marktstammdatenregister und lade sie in der Webanwendung hoch.
-                </li>
-                <li>
-                    <strong>Filter setzen:</strong> Wähle die gewünschten Kriterien – z.B. Bundesland, Anlagentyp, Mindestleistung.
-                </li>
-                <li>
-                    <strong>Cluster wählen:</strong> Optional kannst du Anlagen nach räumlicher Nähe gruppieren.
-                </li>
-                <li>
-                    <strong>Visualisierung:</strong> Die Ergebnisse werden auf der Karte angezeigt. Du kannst Details zu Anlagen abrufen.
-                </li>
-                <li>
-                    <strong>Export:</strong> Die gefilterten/geclusterten Daten kannst du als GPX oder SVG herunterladen.
-                </li>
-            </ol>
-            <h2>Screenshots &amp; Beispiele</h2>
-            <img src="static/img/mastr_query.png" class="example" alt="CSV Export Marktstammdatenregister">
-            <div class="example-caption">Beispiel: Export einer CSV-Datei aus dem Marktstammdatenregister</div>
-            <img src="static/img/stromerzeuger_brd_pv_ge100.png" class="example" alt="Webapp: Karte mit PV-Anlagen">
-            <div class="example-caption">Webapp: Kartenansicht mit geclusterten PV-Anlagen</div>
-            <img src="static/img/stromerzeuger_landkreisludwigsburg_100kw.png" class="example" alt="Webapp: Anlagenfilter im Landkreis">
-            <div class="example-caption">Webapp: Gefilterte Anlagen im Landkreis Ludwigsburg</div>
-            <div class="doc-note">
-                <strong>Direkt loslegen:</strong> <a href="https://eduard.uber.space/mastrutils" target="_blank">Zur Webanwendung</a>
-            </div>
+# Dokumentation
 
-            <h2 id="gpx-examples">GPX Beispiele</h2>
-            <p>Mit <strong>mastrtogpx</strong> lassen sich Anlagen-Daten in GPX-Dateien umwandeln und als Karte darstellen.</p>
-            <h3>Stromerzeuger BRD PV ≥ 100kW (geclustert)</h3>
-            <img src="static/img/stromerzeuger_brd_pv_ge100.png" class="example" alt="PV ≥ 100kW geclustert">
-            <div class="example-caption">Solaranlagen ≥ 100kW deutschlandweit, Clusterung nach Fläche</div>
-            <h3>Stromerzeuger Baden-Württemberg Wind ≥ 10MW (geclustert)</h3>
-            <img src="static/img/stromerzeuger_wind_cluster_bawue_ge10mw.png" class="example" alt="Wind ≥ 10MW geclustert">
-            <div class="example-caption">Windkraftanlagen ≥ 10MW in Baden-Württemberg, Clusterung nach Fläche</div>
-            <h3>Stromerzeuger ≥ 500kW im Landkreis Ludwigsburg</h3>
-            <img src="static/img/stromerzeuger_landkreisludwigsburg_100kw.png" class="example" alt="Ludwigsburg ≥ 100kW">
-            <div class="example-caption">Alle Stromerzeuger ≥ 100kW im Landkreis Ludwigsburg</div>
-            <h3>Stromerzeuger ≥ 500kW im Landkreis Ludwigsburg (mit Erläuterungen)</h3>
-            <img src="static/img/stromerzeuger_landkreisludwigsburg_500kw.gpx" class="example" alt="Ludwigsburg ≥ 500kW GPX">
-            <div class="example-caption">GPX-Export mit Erläuterungen zu einer Einheit</div>
+**Das wichtigste**: Diese Tools und die Webanwendung werden angeboten wie in der LICENCE angegeben. Es gibt keine Gewähr, keinen Support oder ähnliches.
 
-            <h2 id="plot-examples">Plot Beispiele</h2>
-            <p>Mit <strong>mastrtoplot</strong> können die Daten anschaulich als Vektorgraphik (SVG) dargestellt werden.</p>
-            <h3>PV ≥ 500kW: Aktive Bruttoleistung pro Fläche</h3>
-            <img src="static/img/stromerzeuger_pv_500k_brd_bundesland_pa.svg" class="example" alt="PV 500kW Bundesland">
-            <div class="example-caption">Installierte Leistung von PV-Anlagen nach Fläche und Bundesland</div>
-            <h3>PV ≥ 500kW: Sektorensplit</h3>
-            <img src="static/img/stromerzeuger_pv_500k_brd_sectorensplit.svg" class="example" alt="PV Sektorensplit">
-            <div class="example-caption">Verteilung der PV-Anlagen nach Sektoren</div>
-            <h3>PV > 500kW: Installierte Leistung nach Inbetriebnahmejahr</h3>
-            <img src="static/img/stromerzeuger_pv_500k_brd.svg" class="example" alt="PV Inbetriebnahmejahr">
-            <div class="example-caption">PV-Anlagen nach Jahr der Inbetriebnahme</div>
-            <h3>Wind > 1.5MW: Installierte Leistung nach Inbetriebnahmejahr</h3>
-            <img src="static/img/stromerzeuger_wind_brd_1-5m_inbetriebnahmejahr.svg" class="example" alt="Wind Inbetriebnahmejahr">
-            <div class="example-caption">Windkraftanlagen nach Jahr der Inbetriebnahme</div>
-            <h3>Wind > 1.5MW: Leistung pro Fläche</h3>
-            <img src="static/img/stromerzeuger_wind_brd_1-5m_pa.svg" class="example" alt="Wind Fläche">
-            <div class="example-caption">Installierte Wind-Leistung nach Fläche</div>
-            <h3>Biogas > 200kW: Installierte Leistung nach Inbetriebnahmejahr</h3>
-            <img src="static/img/brd_biogas_200kW.svg" class="example" alt="Biogas Inbetriebnahmejahr">
-            <div class="example-caption">Biogasanlagen nach Jahr der Inbetriebnahme</div>
-            <h3>Ludwigsburg > 7kW: Energieträger-Split</h3>
-            <img src="static/img/stromerzeuger_landkreis_ludwigsburg_energietraeger_split_7.svg" class="example" alt="Energieträger Ludwigsburg">
-            <div class="example-caption">Energieträgersplit aller Anlagen im Landkreis Ludwigsburg > 7kW</div>
+Dieses Repository enthält Tools zur Auswertung der Daten des Marktstammdatenregisters (MaStR). Derzeit sind folgende Anwendungen verfügbar:
 
-            <h2 id="cli-tools">CLI-Tools</h2>
-            <p>
-                <strong>mastrtogpx</strong> und <strong>mastrtoplot</strong> können auch direkt als Kommandozeilen-Tools genutzt werden:
-                <ul>
-                    <li><code>mastrtogpx</code>: MaStR CSV → GPX</li>
-                    <li><code>mastrtoplot</code>: MaStR CSV → SVG</li>
-                </ul>
-                Weitere Informationen zu Installation und Nutzung finden sich im Repository.
-            </p>
-        </div>
-    </main>
-</body>
-</html>
+1. **mastrtogpx**: Ein Kommandozeilen-Tool zur Konvertierung von MaStR-Daten in das GPX-Format.
+2. **mastrtoplot**: Ein Kommandozeilen-Tool zur Erstellung von Plots aus MaStR-Dateien in als Vektorgraphik (SVG-Format).
+3. **Webanwendung**: Eine Anwendung zur der obigen Tools also Lokalisierung von Anlagen und Anlagen-Parks, wobei benachbarte Anlagen zusammengefasst werden können, sowie das Erstellen von Plots.
+
+
+## Ziel der Anwendung mastrtogpx
+
+Mit der Anwendung sollten in erster Linie große Windparks oder Solaranlagen gefunden werden. Für diese Anlagen gilt in der Regel, dass diese Stromerzeugungseinheiten in der Regel aus vielen einzelen in einem Park zusammenstehen. Das heißt das reine Filtern auf Einheiten mit deutlich größeren Werten als 10 MW für Solaranlagen oder deutlich größer als 7MW nicht hilfreicht ist. Deshalb wird mit der Anwendung auch eine sogenannte flächige Clusterung angeboten. Dabei können auch große Eiheiten mit deutlich größer als 100 MW gesucht werden. So eine Suche ist weiter unten als Beispiel beschrieben.
+
+## Ablaufe der Anlagensuche
+
+### Abruf der Daten
+
+1. Aufruf des [**MarktStammdatenregisters**](https://www.marktstammdatenregister.de/MaStR/Einheit/Einheiten/ErweiterteOeffentlicheEinheitenuebersicht)
+
+2. **Filterung der Daten**: Erstellen Sie einen Filter, um die gewünschten Anlagen einzugrenzen. Achten Sie darauf, dass das Ergebnis **25.000 Anlagen nicht übersteigt**. Typische Filterkriterien könnten sein:
+   - **Bundesland**: Auswahl des spezifischen Bundeslandes.
+   - **Anlagentyp**: Auswahl des gewünschten Anlagentypen (auch mehrere).
+   - **Mindestbruttoleistung**: Festlegung einer minimalen Bruttoleistung.
+
+![MaStR Query](img/mastr_query.png)
+
+*Hinweis*: Am 31.03.2025 lieferte eine solche Abfrage beispielsweise 844 Anlagen (sowohl in Betrieb als auch in Planung).
+
+3. **Export der Daten**: Exportieren Sie die gefilterte Tabelle, beispielsweise als `Downloads/Stromerzeuger.csv`.
+
+### Nutzung des Tools mastrtogpx
+
+1. **Zugriff auf die Anwendung**: Öffne den Webbrowser und navigieren zur Webanwendung unter der Adresse 
+
+  - [https://eduard.uber.space/mastrutils/](https://eduard.uber.space/mastrutils/). 
+  - Bei lokaler Installation (siehe unten) würde der Zugriff über [localhost:5000](http://localhost:5000) erfolgen.
+
+Reiter: Mastr-2-GPX
+
+Die Verwendung der Tools erforder ein Login, der Zugriff kann beim Autor bezogen werden (siehe Kontakt).
+Anschließend kann das Tool aufgerufen werden.
+
+![Mastr to GPX Query und Map](img/mastr_gpx_konverter_form_map.png)
+
+2. **Eingabe der Daten**:
+
+In der Abfrage muss eingegeben werden:
+- File von Marktstammdatenregister
+- Query [kann auch leer sein]
+- Min. Bruttoleistung der Fläche in kW:
+  - für 0 werden alle Anlagen die die Query erfüllen angezeigt
+  - für Werte größer 0 wird innerhalb des Radius um jede Anlage nach weiteren Anlagen gesucht und ein Zentrum
+    identifiziert.
+- Radius nur wesentlich bei flächiger Suche siehe Min Bruttoleistung der Fläche > 0
+- Output File Name (optional)
+
+Jetzt starten der App mit **Convert**
+
+3. **Ergebnisanzeige**: Die Anwendung visualisiert die Anlagen auf einer Karte und fasst benachbarte Anlagen gemäß den angegebenen Kriterien zusammen.
+
+![popup](img/popup_one_item.png)
+
+Bei flächiger Suche werden die Anlagen zusammengefasst und die Eigenschaften einer dieser Anlagen ausgegeben 
+(allerdings mit der Gesamtbruttoleistung aller Anlagen.)
+
+![flaechige Suche](img/flaechige_suche.png)
+
+**Hinweise**
+
+- Stellen Sie sicher, dass die exportierte CSV-Datei die erwartete Struktur und Datenfelder enthält, um eine korrekte Verarbeitung in der Webanwendung zu gewährleisten.
+- Bei Fragen oder Problemen konsultieren Sie bitte die bereitgestellten Dokumentationen.
+
+### Download gpx
+
+Anschließend kann das gewünschte gpx file runtergeladen und in z.b. eienr Handy-App verwendet werden. 
+
+Hier endet die Beschreibung der Web Applikation
+
+## Beispiel Suche nach Solarparks mit Leistungen größer als 100MW
+
+Zunächst wird ein [**Marktstammdatenregister Auszug**](https://www.marktstammdatenregister.de/MaStR/Einheit/Einheiten/ErweiterteOeffentlicheEinheitenuebersicht) erstellt, dabei wird folgender Filer angewendet:
+- "Energieträger" entspricht "Solare Strahlungsenergie"
+- "Bruttoleistung der Einheit" größer als 500 kW
+- "Betriebsstatus" entspricht nicht "Endgültig stillgelegt"
+
+(Stand 11.05.2025: 20244 Stromerzeugungseinheiten.)
+
+Tabelle Exportieren (als .csv) 
+- Datei "Stromerzeuger...csv" befindet sich jetzt in Downloads
+
+Wechsel zu [**MaStR to GPX Konverter**](https://eduard.user.space/)
+
+### Einfache Suche
+
+Eingabe folgender Daten:
+- Filename: wie eben vom Marktstammdatenregister geholt
+- Querey: BruttoleistungDerEinheit > 10000
+- Min. Bruttoleistung der Fläche in kW: 0
+- Radius [m]: 2000
+- Output File Name: leer
+
+Drücke Convert
+
+Es sollten jetzt auf der rechten Seite sämtlichen c.a. 700 Einheiten dargestellt sein.
+
+![PV > 10MW in Deutschland](img/pv_10mw_deutschland.png)
+
+### Flächige Suche nach Solarparks mit Gesamtleistung größer 150 MW
+
+Einzige Unterschied zur obigen Eingabe ist die Eingabe einer Min. Bruttoleistung.
+
+Dort kann dann 150000 [kW] stehen, erst jetzt wird der Radius relevant.
+Die Karte wird jetzt deutlich übersichtlicher:
+
+![PV > 150MW in Deutschland](img/pv_150mw_deutschland.png)
+
+Werte über 200kW reduzieren sich die Anlagen auf die deutschlandweit größte Anlage bei Leibzig.
+
+![PV > 200MW in Deutschland](img/pv_500mw_deutschland.png)
+
+## Nutzung des Tools mastrtoplot
+
+**Zugriff auf die Anwendung**: Öffne den Webbrowser und navigiere zur Webanwendung unter der Adresse
+
+- `https://eduard.uber.space/mastrutils/`. 
+- Bei lokaler Installation (siehe unten) würde der Zugriff über `http://localhost:5000` erfolgen.
+
+Reiter: MaStR-2-Plot
+
+Zunächst unterscheidet sich mastrtoplot von mastrtogpx gering, allerdings wird mit diesem
+Tool eine Vektorgraphik mit akkumulierter Bruttoleistung abhänging von einer Zielgröße 
+(z.B. Bundesland, Landkreis, Postleitzahl oder einer anderen Kategorie) ausgegeben.
+
+**Beispiel 1**
+
+Als erstes Beispiel soll die pv Leistungen in Segmenten summiert werden. Also
+im Interval zwischen 1MW und 10MV, 10MW und 100MW, sowie größer 100MW.
+Für die 10er Potenzen bei den Bruttoleistungen gibt es Abkürzungen:
+- Dabei steht ge_1mw für BruttoleistungDerEinheit >= 1000
+- lt_100mw analog für BruttoleistungDerEinheit < 100000
+
+![pv Leistungsaufteilung nach Bundesland](img/plot_pv_leistungs_segmente.png)
+
+**Beispiel 2**
+
+Beispiel 2 liefert die Anteile von Leistungen pro Energieträger (nur "Solare Strahlungsenergie", "Biomasse (nicht Biogas)", "Biogas", "Wind") pro Landkreis. Dieser Marktstammdatenregisterauszung enthält nur diese Anlagen aus Bayern und Baden-Württemberg > 1MW, die Querys grenzen das Ergebnis auf Baden-Württemberg ein (is_BaWue.)
+(kurze Anmerkung: is_pv steht für Energieträger="Solare Strahlungsenergie") 
+
+![Akumulierte Leistung aufgeteilt in Energieträger](img/plot_energietraeger_typen.png)
+
+Der Plot kann runtergeladen oder durch anklicken in eigenem Tab
+geöffnet werden.
+
+
+**Beispiel 3**
+
+Es soll die pv Leistung vor oder nach einem bestimmten Datum ermittel werden, an dem die Einheit das erste Mal erwähnt wird  ermittelt wird. Dafür gibt es die Operatoren:
+
+~~~
+before_DD.MM.YYYY und
+after_DD.MM.YYYY
+~~~
+
+Eine solche Abfrage könne dann aussehen:
+
+![PV vor und nach](img/pv_vor_nach_2021.png)
+
+## Hinweis zu Querys
+
+Die Online-Hilfen sind beschränkt auf einer Charakterisierung der Daten nach Leistung, Energieträger, Betriebsstatus,  gibt es auch bereits online Hilfen zu auf den Seiten.
+
+Aus software technischen Gründen wird z.B. der Begriff
+`Bruttoleistung der Einheit` zu `BruttoleistungDerEinheit`. Es können alle Begriffe in dieser Art, die im csv Header stehen verwendet werden.
+Die Querys können Operatoren wie in den meisten Programmiersprächen
+enthalten also (`&` für und `|` für oder u.s.w.)
+Ein Ausdruck muss dabei aber immer die Form haben `Spaltenkopf == "Typ"`, anstelle von `"Typ"` und nicht `'Typ'`. Im Fall von können auch `>`, `<`, `<=` oder `>=` als Operatoren verwendet werden.
+
+Das heißt die Abfrage:
+
+`BruttoleistungDerEinheit > 1000` ist identisch zu `ge_1mw`.
+
+Weiter gibt es noch Abkürzungen für:
+
+~~~
+is_active: Betriebsstatus == "in Betrieb"
+~~~
+
+
+
+----
+
+# Mastr-Utils (lokale Version)
+
+## Installation
+
+1. **Repository klonen**:
+   ```bash
+   git clone https://github.com/fritzthekid/mastr-utils.git
+   ```
+2. **In das Projektverzeichnis wechseln**:
+   ```bash
+   cd mastr-utils
+   ```
+3. **Virtuelle Umgebung erstellen und aktivieren**:
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate  # Für Unix-/Linux-Systeme
+   venv\Scripts\activate     # Für Windows-Systeme
+   ```
+4. **Abhängigkeiten installieren**:
+   ```bash
+   pip install -e .
+   ```
+
+## Nutzung des Kommandozeilen Tool zum Lokalisieren von Energieanlagen
+
+Die Nutzung des Tools **mastrtogpx** wird wie oben beschrieben durchgeführt.
+
+Die kleine Hilfe liefert die Argumente:
+
+```
+mastrtogpx -h
+```
+Ergebnis ist eine gpx-Datei. Diese kann dann z.B. auf einer Handy-App genutzt werden.
+
+~~~
+usage: mastrtogpx [-h] [-q QUERY] [-o OUTPUT] [-c COLOR] [-m MIN_WEIGHT] [-r RADIUS]
+                  [-a] [-s] [-h_query]
+                  mastr_file
+~~~
+
+Das <code>mastr_file</code> ist die Datei, die vom MaStR-Server heruntergeladen wurde.
+Dann können noch weitere Einschränkungen über eine Query spezifiziert werden.
+So dass schließlich in einer Datei mit allen Anlagen (auch Öl und Gas) einer Stadt die jeweils 
+interessanten untersucht werden können. Die Suchkriterien können mit der Option <code>-s</code> angezeigt werden. Typische Beispiele finden sich über die Option 
+<code>-h_query</code>. Die Punkte können mit einer Farbe markiert sein (nicht alle Tools 
+unterstützen die Anzeige). Für die Solarparks und Windparks gibt es zwei weitere 
+Optionen: Mit <code>-r</code> wird ein Suchradius (um jeden Punkt) beschrieben (Standard 1 km), mit <code>-m</code> eine weitere Mindestschwelle für die Bruttoenergie-Leistung des Parks. Übersteigt der Park den Radius, können auch mehrere Aggregate nebeneinander angezeigt werden.
+
+### Nur drei Beispiele:
+
+**Kleinstes Beispiel**
+
+Ein kleines Beispiel liefert ohne weitere Einschränkungen alle Anlagen, die als gefilterte Auswahl vom Server heruntergeladen wurden. Hier am Beispiel des Landkreises Ludwigsburg:
+
+~~~
+mastrtogpx '~/Downloads/Stromerzeuger(15).csv' -o tmp/alles.gpx
+~~~
+
+(Das File <code>~/Downloads/Stromerzeuger(15).csv</code> enthält alle größeren Anlagen im 
+Landkreis Ludwigsburg.)
+
+Diese Information ist geeignet, um schnell alle Anlagen in der Region zu finden und
+die wichtigsten Faktoren zu ermitteln.
+
+**Suche der Großspeicher in der Nähe**:
+
+Dieses Beispiel hilft, den Stromspeicher in Marbach genauer zu lokalisieren. Geeignet für
+die nächste Fahrradtour. Das Ergebnis wird unten mit Hilfe der Handy-App OSMAnd dargestellt.
+
+~~~
+mastrtogpx '~/Downloads/Stromerzeuger(15).csv' -q 'is_battery & BruttoleistungDerEinheit > 10000 & (BetriebsStatus != "Endgültig stillgelegt")' -o tmp/speicher.gpx -c Red
+~~~
+
+**Suche großer Solarparks in Deutschland**:
+
+Das Zurechtfinden der wirklich großen Solarparks hilft die folgende Suche und das Ergebnis.
+(Siehe auch Online-Betrachter sowie Viking als PC-Tool)
+
+~~~
+mastrtogpx '~/Downloads/Stromerzeuger(17).csv' -q 'is_pv & BruttoleistungDerEinheit > 10000 & (BetriebsStatus != "Endgültig stillgelegt")' -m 90000 -r 1000 -o tmp/ge_90_1000.gpx -c Black
+~~~
+
+## Tools zur Visualisierung von GPX-Dateien
+
+Hier sind Links zu einigen Online-Viewern:
+
+- [j-berkemeier](https://www.j-berkemeier.de/ShowGPX.html)
+
+![](img/online2_10_90_1000_bei_Leibzig-SILUX-Solarpark.png)
+
+- [gpx.studio](https://gpx.studio/)
+
+![](img/online1-ge_90_1000.png)
+
+Mobile:
+
+- [OSMAnd](https://osmand.net/)
+
+Beispiel für die Suche eines Großspeichers in der Nähe für die nächste Fahrradtour:
+
+![OSMAnd](img/OsmAnd_Marbach_Speicher_100mW.jpg)
+
+PC:
+
+- [Viking](https://wiki.openstreetmap.org/wiki/Viking)
+
+![Viking](img/Viking_10_90_1000_bei_Leibzig-SILUX-Solarpark.png)
+
+# Lizenz
+
+Dieses Projekt steht unter der [BSD-Lizenz](LICENSE).
+
+Für das Logo gilt die CC BY-SA 4.0 Lizenz
+```
+https://commons.wikimedia.org/wiki/File:Eyes-blitz.svg
+```
